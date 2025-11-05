@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🏡 Boston Housing Price Prediction</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+      max-width: 900px;
+      width: 95%;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2rem;
+      font-weight: 600;
+      color: #00e6ff;
+      text-shadow: 0 0 10px rgba(0, 230, 255, 0.6);
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    label {
+      font-weight: 500;
+      color: #cce7ff;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px 10px;
+      margin-top: 5px;
+      border: none;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+      transition: 0.3s;
+    }
+
+    input:focus {
+      outline: none;
+      background: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 0 10px #00c6ff;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      margin-top: 30px;
+      background-color: #00c6ff;
+      border: none;
+      color: white;
+      font-size: 1.1rem;
+      padding: 10px 0;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #0072ff;
+      transform: scale(1.05);
+    }
+
+    .result {
+      text-align: center;
+      margin-top: 25px;
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: #00ff99;
+      text-shadow: 0 0 10px rgba(0, 255, 153, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🏡 Boston Housing Price Prediction</h1>
+    <form action="{{ url_for('predict') }}" method="post">
+      <div class="grid-container">
+        <div><label>CRIM</label><input type="number" step="any" name="CRIM" placeholder="0.03" required></div>
+        <div><label>ZN</label><input type="number" step="any" name="ZN" placeholder="18.0" required></div>
+        <div><label>INDUS</label><input type="number" step="any" name="INDUS" placeholder="2.31" required></div>
+        <div><label>CHAS</label><input type="number" step="any" name="CHAS" placeholder="0 or 1" required></div>
+        <div><label>NOX</label><input type="number" step="any" name="NOX" placeholder="0.538" required></div>
+        <div><label>RM</label><input type="number" step="any" name="RM" placeholder="6.575" required></div>
+        <div><label>AGE</label><input type="number" step="any" name="AGE" placeholder="65.2" required></div>
+        <div><label>DIS</label><input type="number" step="any" name="DIS" placeholder="4.09" required></div>
+        <div><label>RAD</label><input type="number" step="any" name="RAD" placeholder="1" required></div>
+        <div><label>TAX</label><input type="number" step="any" name="TAX" placeholder="296" required></div>
+        <div><label>PTRATIO</label><input type="number" step="any" name="PTRATIO" placeholder="15.3" required></div>
+        <div><label>B</label><input type="number" step="any" name="B" placeholder="396.9" required></div>
+        <div><label>LSTAT</label><input type="number" step="any" name="LSTAT" placeholder="4.98" required></div>
+      </div>
+
+      <button type="submit" class="btn">🔮 Predict Price</button>
+    </form>
+
+    {% if prediction_text %}
+      <h2 class="result">{{ prediction_text }}</h2>
+    {% endif %}
+  </div>
+</body>
+</html>
+
+</html>
